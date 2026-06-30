@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Gran Vida de Juana Azurduy</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Playful and Readable -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: #f0f8ff;
+        }
+        h1, h2, h3 {
+            font-family: 'Fredoka One', cursive;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 9999px;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between text-slate-800">
+
+    <!-- Header / Barra Superior -->
+    <header class="bg-sky-500 p-4 shadow-md sticky top-0 z-50 border-b-4 border-white">
+        <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <span class="text-4xl">🏇</span>
+                <div>
+                    <h1 class="text-2xl sm:text-3xl text-white tracking-wide">¡La Gran Vida de Juana Azurduy!</h1>
+                    <p class="text-xs sm:text-sm text-blue-900 font-semibold">Descubre a la gran heroína de América</p>
+                </div>
+            </div>
+            <!-- Botón Narrador Mágico (Web Speech API) -->
+            <button onclick="toggleAudio()" id="btn-audio" class="bg-blue-800 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded-full flex items-center gap-2 shadow-lg transition duration-300 transform active:scale-95">
+                <span id="audio-icon" class="text-lg">🔊</span>
+                <span id="audio-text" class="text-sm">Escuchar Historia</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl w-full mx-auto p-4 flex-grow flex flex-col gap-6">
+
+        <!-- Mapa de Aventura (Línea del Tiempo) -->
+        <section class="bg-sky-100 rounded-3xl p-4 sm:p-6 shadow-inner border-4 border-dashed border-sky-300">
+            <h2 class="text-center text-xl text-blue-900 mb-4 flex items-center justify-center gap-2">
+                🗺️ El Mapa del Destino de Juana
+            </h2>
+            <p class="text-center text-xs text-blue-700 mb-4">Haz clic en cada banderín para viajar en el tiempo:</p>
+            
+            <!-- Timeline Track -->
+            <div class="flex items-center gap-3 overflow-x-auto pb-4 custom-scrollbar snap-x scroll-smooth" id="timeline-track">
+                <!-- Milestone 1 -->
+                <button onclick="selectMilestone(1)" id="btn-1" class="timeline-btn snap-center flex-shrink-0 flex flex-col items-center p-3 bg-white rounded-2xl shadow border-2 border-sky-400 transition transform hover:-translate-y-1 w-28">
+                    <span class="text-xs font-bold text-sky-600">1780</span>
+                    <span class="text-3xl my-1">👶</span>
+                    <span class="text-[10px] font-bold text-slate-600 text-center leading-tight">Nacimiento</span>
+                </button>
+                <!-- Line -->
+                <div class="h-1 w-8 bg-sky-400 flex-shrink-0"></div>
+                <!-- Milestone 2 -->
+                <button onclick="selectMilestone(2)" id="btn-2" class="timeline-btn snap-center flex-shrink-0 flex flex-col items-center p-3 bg-white rounded-2xl shadow border-2 border-slate-200 transition transform hover:-translate-y-1 w-28">
+                    <span class="text-xs font-bold text-slate-400">1797</span>
+                    <span class="text-3xl my-1">⛪</span>
+                    <span class="text-[10px] font-bold text-slate-600 text-center leading-tight">El Convento</span>
+                </button>
+                <!-- Line -->
+                <div class="h-1 w-8 bg-slate-200 flex-shrink-0"></div>
+                <!-- Milestone 3 -->
+                <button onclick="selectMilestone(3)" id="btn-3" class="timeline-btn snap-center flex-shrink-0 flex flex-col items-center p-3 bg-white rounded-2xl shadow border-2 border-slate-200 transition transform hover:-translate-y-1 w-28">
+                    <span class="text-xs font-bold text-slate-400">1805</span>
+                    <span class="text-3xl my-1">💍</span>
+                    <span class="text-[10px] font-bold text-slate-600 text-center leading-tight">Amor Rebelde</span>
+                </button>
+                <!-- Line -->
+                <div class="h-1 w-8 bg-slate-200 flex-shrink-0"></div>
+                <!-- Milestone 4 -->
+                <button onclick="selectMilestone(4)" id="btn-4" class="timeline-btn snap-center flex-shrink-0 flex flex-col items-center p-3 bg-white rounded-2xl shadow border-2 border-slate-200 transition transform hover:-translate-y-1 w-28">
+                    <span class="text-xs font-bold text-slate-400">1809</span>
+                    <span class="text-3xl my-1">📢</span>
+                    <span class="text-[10px] font-bold text-slate-600 text-center leading-tight">La Revolución</span>
+                </button>
+                <!-- Line -->
+                <div class="h-1 w-8 bg-slate-200 flex-shrink-0"></div>
+                <!-- Milestone 5 -->
+                <button onclick="selectMilestone(5)" id="btn-5" class="timeline-btn snap-center flex-shrink-0 flex flex-col items-center p-3 bg-white rounded-2xl shadow border-2 border-slate-200 transition transform hover:-translate-y-1 w-28">
+                    <span class="text-xs font-bold text-slate-400">1813</span>
+                    <span class="text-3xl my-1">💂</span>
+                    <span class="text-[10px] font-bold text-slate-600 text-center leading-tight">Las Amazonas</span>
+                </button>
+                <!-- Line -->
+                <div class="h-1 w-8 bg-slate-200 flex-shrink-0"></div>
+                <!-- Milestone 6 -->
+                <button onclick="selectMilestone(6)" id="btn-6" class="timeline-btn snap-center flex-shrink-0 flex flex-col items-center p-3 bg-white rounded-2xl shadow border-2 border-slate-200 transition transform hover:-translate-y-1 w-28">
+                    <span class="text-xs font-bold text-slate-400">1814</span>
+                    <span class="text-3xl my-1">🏇</span>
+                    <span class="text-[10px] font-bold text-slate-600 text-center leading-tight">B. de Tarvita</span>
+                </button>
+                <!-- Line -->
+                <div class="h-1 w-8 bg-slate-200 flex-shrink-0"></div>
+                <!-- Milestone 7 -->
+                <button onclick="selectMilestone(7)" id="btn-7" class="timeline-btn snap-center flex-shrink-0 flex flex-col items-center p-3 bg-white rounded-2xl shadow border-2 border-slate-200 transition transform hover:-translate-y-1 w-28">
+                    <span class="text-xs font-bold text-slate-400">1815</span>
+                    <span class="text-3xl my-1">🌊</span>
+                    <span class="text-[10px] font-bold text-slate-600 text-center leading-tight">Pitantora</span>
+                </button>
+                <!-- Line -->
+                <div class="h-1 w-8 bg-slate-200 flex-shrink-0"></div>
+                <!-- Milestone 8 -->
+                <button onclick="selectMilestone(8)" id="btn-8" class="timeline-btn snap-center flex-shrink-0 flex flex-col items-center p-3 bg-white rounded-2xl shadow border-2 border-slate-200 transition transform hover:-translate-y-1 w-28">
+                    <span class="text-xs font-bold text-slate-400">1816</span>
+                    <span class="text-3xl my-1">⚔️</span>
+                    <span class="text-[10px] font-bold text-slate-600 text-center leading-tight">El Villar</span>
+                </button>
+                <!-- Line -->
+                <div class="h-1 w-8 bg-slate-200 flex-shrink-0"></div>
+                <!-- Milestone 9 -->
+                <button onclick="selectMilestone(9)" id="btn-9" class="timeline-btn snap-center flex-shrink-0 flex flex-col items-center p-3 bg-white rounded-2xl shadow border-2 border-slate-200 transition transform hover:-translate-y-1 w-28">
+                    <span class="text-xs font-bold text-slate-400">1818</span>
+                    <span class="text-3xl my-1">⛰️</span>
+                    <span class="text-[10px] font-bold text-slate-600 text-center leading-tight">Lucha en Salta</span>
+                </button>
+                <!-- Line -->
+                <div class="h-1 w-8 bg-slate-200 flex-shrink-0"></div>
+                <!-- Milestone 10 -->
+                <button onclick="selectMilestone(10)" id="btn-10" class="timeline-btn snap-center flex-shrink-0 flex flex-col items-center p-3 bg-white rounded-2xl shadow border-2 border-slate-200 transition transform hover:-translate-y-1 w-28">
+                    <span class="text-xs font-bold text-slate-400">1821</span>
+                    <span class="text-3xl my-1">😢</span>
+                    <span class="text-[10px] font-bold text-slate-600 text-center leading-tight">Triste Retorno</span>
+                </button>
+                <!-- Line -->
+                <div class="h-1 w-8 bg-slate-200 flex-shrink-0"></div>
+                <!-- Milestone 11 -->
+                <button onclick="selectMilestone(11)" id="btn-11" class="timeline-btn snap-center flex-shrink-0 flex flex-col items-center p-3 bg-white rounded-2xl shadow border-2 border-slate-200 transition transform hover:-translate-y-1 w-28">
+                    <span class="text-xs font-bold text-slate-400">1825</span>
+                    <span class="text-3xl my-1">🌟</span>
+                    <span class="text-[10px] font-bold text-slate-600 text-center leading-tight">Bolívar y Libertad</span>
+                </button>
+                <!-- Line -->
+                <div class="h-1 w-8 bg-slate-200 flex-shrink-0"></div>
+                <!-- Milestone 12 -->
+                <button onclick="selectMilestone(12)" id="btn-12" class="timeline-btn snap-center flex-shrink-0 flex flex-col items-center p-3 bg-white rounded-2xl shadow border-2 border-slate-200 transition transform hover:-translate-y-1 w-28">
+                    <span class="text-xs font-bold text-slate-400">1862</span>
+                    <span class="text-3xl my-1">🕊️</span>
+                    <span class="text-[10px] font-bold text-slate-600 text-center leading-tight">Eternidad</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Carta Principal de Aventura (Contenedor Dinámico) -->
+        <section id="adventure-card" class="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border-4 border-sky-400 transition-all duration-300 transform scale-100 flex flex-col md:flex-row gap-6 items-center">
+            <!-- Imagen/Ilustración (Imagen Real Cargada por URL) -->
+            <div class="w-full md:w-1/3 flex justify-center items-center bg-sky-50 rounded-2xl p-4 shadow-inner" id="card-illustration">
+                <!-- Se inyecta dinámicamente la imagen mediante JS -->
+            </div>
+            
+            <!-- Texto y Detalles -->
+            <div class="w-full md:w-2/3 flex flex-col justify-between">
+                <div>
+                    <span id="card-date" class="bg-sky-200 text-blue-950 font-bold px-3 py-1 rounded-full text-xs sm:text-sm shadow-sm inline-block mb-3">12 de Julio de 1780</span>
+                    <h3 id="card-title" class="text-2xl sm:text-3xl text-blue-900 mb-3">El Nacimiento de una Guerrera</h3>
+                    <p id="card-text" class="text-sm sm:text-base leading-relaxed text-slate-700 mb-4">
+                        Juana nació en un hermoso pueblo llamado Toroca. Desde muy pequeñita, en lugar de quedarse tejiendo, prefería salir a cabalgar libre por los cerros andinos. Aprendió a hablar el idioma quechua charlando con los campesinos y siempre sintió que todos debían ser tratados con justicia.
+                    </p>
+                </div>
+                
+                <!-- Navegadores de la Carta -->
+                <div class="flex items-center justify-between mt-4">
+                    <button onclick="navigateMilestone(-1)" class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold py-2 px-4 rounded-xl text-sm transition transform active:scale-95">
+                        ◀ Anterior
+                    </button>
+                    <span class="text-xs font-bold text-slate-400" id="card-index">Paso 1 de 12</span>
+                    <button onclick="navigateMilestone(1)" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-xl text-sm transition transform active:scale-95">
+                        Siguiente ▶
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Zona de Interacciones Reorganizada -->
+        <section class="flex flex-col gap-6">
+
+            <!-- Quiz de la Libertad (Arriba) -->
+            <div class="bg-sky-100 rounded-3xl p-6 border-4 border-sky-300 flex flex-col justify-between shadow-lg w-full">
+                <div>
+                    <h3 class="text-lg text-blue-900 mb-2 flex items-center gap-2">💡 ¿Cuánto sabes de Juana?</h3>
+                    <p class="text-xs text-blue-700 mb-4">Responde correctamente las preguntas para ganarte tu sable de honor.</p>
+                    
+                    <div class="bg-white rounded-2xl p-4 border-2 border-sky-200 min-h-[220px] flex flex-col justify-between">
+                        <!-- Pantalla Inicial/Progreso -->
+                        <div id="quiz-wrapper">
+                            <div class="flex justify-between items-center text-xs font-bold text-slate-400 mb-2">
+                                <span id="quiz-progress">Pregunta 1 de 5</span>
+                                <span id="quiz-score-badge" class="text-blue-600">Puntos: 0</span>
+                            </div>
+                            <div id="quiz-question" class="text-sm font-bold text-slate-700 mb-3">Cargando pregunta...</div>
+                            <div id="quiz-options" class="flex flex-col gap-2">
+                                <!-- Botones de opciones -->
+                            </div>
+                        </div>
+
+                        <!-- Feedback de respuesta -->
+                        <div id="quiz-feedback-box" class="hidden mt-3 p-3 rounded-xl text-xs text-center font-semibold">
+                            <p id="quiz-feedback-text"></p>
+                            <button id="btn-next-question" onclick="nextQuestion()" class="hidden mt-2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded-full transition transform active:scale-95">
+                                Siguiente Pregunta ➔
+                            </button>
+                        </div>
+
+                        <!-- Pantalla Final del Quiz -->
+                        <div id="quiz-congrats" class="hidden flex flex-col items-center justify-center text-center">
+                            <span class="text-5xl mb-2">🏆</span>
+                            <h4 class="text-lg font-bold text-blue-900">¡Eres un Mariscal de la Patria!</h4>
+                            <p class="text-xs text-slate-600 my-2">Has respondido correctamente todas las preguntas sobre la increíble vida de Juana Azurduy.</p>
+                            <button onclick="resetQuiz()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full text-xs shadow-md transition transform active:scale-95">
+                                Volver a Intentar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mapa Histórico Interactivo Ampliado (Abajo) -->
+            <div class="bg-blue-50 rounded-3xl p-6 border-4 border-blue-200 flex flex-col justify-between shadow-lg w-full">
+                <div>
+                    <h3 class="text-xl text-blue-950 mb-2 flex items-center gap-2">🗺️ Explorador del Virreinato</h3>
+                    <p class="text-xs text-blue-900 mb-4">Toca un marcador de color para ver dónde luchó Juana en el mapa oficial de 1783.</p>
+                    
+                    <div class="bg-white rounded-2xl p-4 sm:p-6 border-2 border-blue-200 flex flex-col items-center gap-6">
+                        <!-- Contenedor del Mapa (Escalado Máximo) -->
+                        <div class="flex justify-center w-full">
+                            <!-- El div contenedor mantiene dimensiones proporcionales de la imagen -->
+                            <div class="relative inline-block overflow-hidden rounded-2xl border-4 border-blue-300 bg-sky-50 shadow-inner">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/7/75/Mapa_del_Virreinato_del_R%C3%ADo_de_la_Plata_en_1783.png" alt="Mapa del Virreinato del Río de la Plata en 1783" class="max-h-[550px] md:max-h-[700px] w-full h-auto object-contain block mx-auto">
+                                
+                                <!-- Marcadores Proporcionales de Alta Visibilidad -->
+                                <button onclick="selectMapLocation('toroca')" class="absolute top-[32%] left-[46%] bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm md:text-base w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center animate-pulse border-2 border-white shadow-lg transition transform hover:scale-110">1</button>
+                                <button onclick="selectMapLocation('chuquisaca')" class="absolute top-[28%] left-[49%] bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm md:text-base w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center animate-pulse border-2 border-white shadow-lg transition transform hover:scale-110">2</button>
+                                <button onclick="selectMapLocation('villar')" class="absolute top-[36%] left-[52%] bg-sky-600 hover:bg-sky-700 text-white font-bold text-sm md:text-base w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center animate-pulse border-2 border-white shadow-lg transition transform hover:scale-110">3</button>
+                                <button onclick="selectMapLocation('salta')" class="absolute top-[48%] left-[45%] bg-slate-600 hover:bg-slate-700 text-white font-bold text-sm md:text-base w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center animate-pulse border-2 border-white shadow-lg transition transform hover:scale-110">4</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Caja de Info de Ubicación Completa -->
+                        <div id="map-info-box" class="w-full max-w-2xl p-5 bg-sky-50 rounded-2xl border-2 border-blue-200 text-sm text-slate-700 min-h-[120px] flex flex-col justify-center">
+                            <p class="font-bold text-blue-950 text-base mb-2" id="map-info-title">📍 Toca un número del mapa</p>
+                            <p id="map-info-text" class="leading-relaxed">Conoce los lugares clave donde se forjó la libertad de América del Sur.</p>
+                        </div>
+
+                        <!-- Sección corregida sobre el Virreinato y el Alto Perú -->
+                        <div class="w-full max-w-2xl mt-6 p-6 bg-sky-50 rounded-3xl border-4 border-dashed border-sky-300 text-slate-700 shadow-inner">
+                            <h4 class="text-lg text-blue-900 mb-3 flex items-center gap-2">👑 El Antiguo Virreinato y el Tesoro del Norte</h4>
+                            <p class="text-xs sm:text-sm leading-relaxed mb-3">
+                                ¿Sabías que antes no existían Argentina ni Bolivia? Todo este gran territorio era una sola e inmensa provincia gobernada por el lejano rey de España.
+                            </p>
+                            <p class="text-xs sm:text-sm leading-relaxed mb-3">
+                                A esa súper región la llamaban el Virreinato del Río de la Plata. El virrey gobernaba desde Buenos Aires, obedeciendo las órdenes que el rey le enviaba en barco desde España. Muchas personas debían viajar durante meses en carretas para llevar cartas, ropa y comida. Las distancias eran gigantescas y los caminos eran peligrosos.
+                            </p>
+                            <p class="text-xs sm:text-sm leading-relaxed mb-3">
+                                El Alto Perú quedaba en las montañas del norte, donde hoy es Bolivia. Allí había un cerro mágico y muy famoso llamado Potosí. Ese cerro guardaba toneladas de plata brillante. Con ese metal precioso se fabricaban las monedas de casi todo el planeta Tierra. Quien controlaba el Alto Perú dominaba la riqueza para comprar armas, caballos y alimentos para los soldados patriotas.
+                            </p>
+                            <p class="text-xs sm:text-sm leading-relaxed">
+                                Por eso, los revolucionarios sabían que debían liberar el Alto Perú. Si los españoles retenían esa zona, podían atacar Buenos Aires fácilmente. Juana y los Leales lucharon allí para cortar el paso de los ejércitos reales. Ella defendió esa frontera con valentía infinita.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 text-center py-6 px-4 mt-8 border-t-4 border-sky-400">
+        <p class="text-xs">¡Inspirémonos en la valentía de Juana para luchar por un mundo más justo!</p>
+        <p class="text-[10px] mt-2 text-slate-500">Hecho con fines educativos e interactivos en Canvas.</p>
+    </footer>
+
+    <!-- Scripts y Datos -->
+    <script>
+        const milestones = {
+            1: {
+                date: "12 de Julio de 1780",
+                title: "El Nacimiento de una Guerrera",
+                text: "Juana nació en un hermoso pueblo llamado Toroca. Desde muy pequeñita, en lugar de quedarse tejiendo, prefería salir a cabalgar libre por los cerros andinos. Aprendió a hablar el idioma quechua charlando con los campesinos y siempre sintió que todos debían ser tratados con justicia.",
+                emoji: "👶",
+                image: "https://storage.dtelab.com.ar/uploads/2025/07/image1.png"
+            },
+            2: {
+                date: "Año 1797",
+                title: "La Rebeldía en el Convento",
+                text: "Al quedarse huérfana de pequeña, la enviaron a estudiar en un convento con monjas en Chuquisaca. Pero Juana tenía un alma de viento. No le gustaba el encierro ni las reglas rígidas de la época. Un día se rebeló contra la autoridad del convento y ¡decidieron expulsarla!",
+                emoji: "⛪",
+                image: "https://thumbs.dreamstime.com/b/iglesia-de-santa-teresa-en-sucre-boliv-131522871.jpg"
+            },
+            3: {
+                date: "Año 1805",
+                title: "Manuel Padilla: El Gran Compañero",
+                text: "Juana conoció a Manuel Asencio Padilla, un hombre que compartía sus ideales de libertad. Se casaron y formaron una hermosa familia. Pero más allá de su hogar, ambos querían liberar a su tierra de la injusticia del virreinato español. Su amor fue el motor de sus luchas.",
+                emoji: "💍",
+                image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWmSFAa3Gx9c9IKJGv_ZPdGg3H0wd-jrP50rLatEYolmVxlL7vcj_Bdrn3FIlIBzFLdbA&usqp=CAU"
+            },
+            4: {
+                date: "25 de Mayo de 1809",
+                title: "¡Comienza el Grito de Revolución!",
+                text: "La ciudad de Chuquisaca se levantó en armas pidiendo libertad. Juana y Manuel decidieron que no podían quedarse mirando. Dejaron su casa y sus tierras para organizar un ejército de personas valientes, en su mayoría campesinos e indígenas que luchaban sin miedo.",
+                emoji: "📢",
+                image: "https://www.ellitoral.com/images/2025/05/13/mQecJ426a_300x200__1.jpg"
+            },
+            5: {
+                date: "Año 1813",
+                title: "Encuentro con Belgrano",
+                text: "Se presenta junto a su esposo ante el General Manuel Belgrano. Organiza el batallón 'Leales', compuesto por indios y mestizos, y un cuerpo de caballería de mujeres llamado 'Las Amazonas' para resistir con gran valor.",
+                emoji: "💂",
+                image: "https://pbs.twimg.com/media/E6G43R6WQAQMeTv.jpg"
+            },
+            6: {
+                date: "4 de Marzo de 1814",
+                title: "Victoria en la Batalla de Tarvita",
+                text: "Juana demuestra su liderazgo excepcional al comandar el escuadrón 'Húsares'. Consiguen una victoria patriota clave en la Batalla de Tarvita contra las fuerzas reales.",
+                emoji: "🏇",
+                image: "https://scontent.fmdz3-1.fna.fbcdn.net/v/t39.30808-6/529009797_1343288551138532_4070107507524908393_n.jpg?stp=cp6_dst-jpg_tt6&cstp=mx1536x1024&ctp=s1536x1024&_nc_cat=111&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeFehz7ABG7dxXMEHLaUC3D5qsPVLq-iUf2qw9Uur6JR_d51zR4YF3awh2Q3FbS5A7tJdxOllzKfiYx7zsQwGnjq&_nc_ohc=Ae3pjQzaXpYQ7kNvwEuBkvs&_nc_oc=Adpw8PYuyR3udB0RUQIkivT8_6ogGyjsHFknCsgSHQNEIyYZtDrZ23l8xMfUtou9V_Y&_nc_zt=23&_nc_ht=scontent.fmdz3-1.fna&_nc_gid=1SOXn55DOsJjsuatxWe0-g&_nc_ss=7b2a8&oh=00_AQBQDQwGY6camGLSe5oVbRxMtL7vziNO4zcv6-32ief-7w&oe=6A49B5C7"
+            },
+            7: {
+                date: "Año 1815",
+                title: "El Escape en Pitantora",
+                text: "Durante una escaramuza en Pitantora, Juana da a luz a su quinta hija, Luisa. Logra escapar cruzando un río a nado con la recién nacida en brazos tras ser traicionada por su propia escolta.",
+                emoji: "🌊",
+                image: "https://www.unidiversidad.com.ar/cache/juana-azurduy-21_315_600_c.jpg"
+            },
+            8: {
+                date: "Año 1816",
+                title: "El Triunfo en El Villar",
+                text: "En la gran batalla de El Villar, Juana demostró su increíble coraje. Lideró un batallón llamado 'Los Leales' y capturó la bandera de los soldados del rey. Por su gran valentía, el general Manuel Belgrano le regaló su propio sable y el gobierno la nombró Teniente Coronela.",
+                emoji: "⚔️",
+                image: "https://pbs.twimg.com/media/GHxfONqXYAAo2_P.jpg"
+            },
+            9: {
+                date: "Año 1818",
+                title: "Lucha Guerrera en Salta",
+                text: "Tras sufrir duras derrotas y la trágica pérdida de su amado Manuel, Juana no se rindió. Cabalgó hacia el sur, cruzando los límites del actual territorio de Argentina. Allí se sumó a las temibles fuerzas gauchas de Martín Miguel de Güemes para resistir los ataques reales.",
+                emoji: "⛰️",
+                image: "https://media.diariopopular.com.ar/p/5d5c0d625f3c8233b7f997f4e9edaff3/adjuntos/143/imagenes/008/101/0008101524/billete-200jpeg.jpeg"
+            },
+            10: {
+                date: "Año 1821",
+                title: "Triste Retorno al Norte",
+                text: "La muerte de su gran protector, el héroe gaucho Güemes, dejó a Juana en una situación sumamente difícil. Sin apoyo militar suficiente, tuvo que decidir regresar caminando a su tierra natal en Chuquisaca. Fue un viaje largo, cansador y lleno de recuerdos dolorosos.",
+                emoji: "😢",
+                image: "https://pensamientonacional.com.ar/wp-content/uploads/2025/08/Juana-Azurduy.jpg"
+            },
+            11: {
+                date: "Año 1825",
+                title: "Simón Bolívar y la Libertad",
+                text: "¡La guerra terminó y América logró su libertad! El libertador Simón Bolívar visitó a Juana, quien vivía en la pobreza. Bolívar la abrazó, elogió su gloria militar y dijo que el nuevo país, Bolivia, debería haberse llamado Juana en su honor. Le concedió una pensión de agradecimiento.",
+                emoji: "🌟",
+                image: "https://scma.smith.edu/sites/default/files/2020-11/bolivar%20slideshow%20image_0.jpg"
+            },
+            12: {
+                date: "25 de Mayo de 1862",
+                title: "El Último Viaje y su Legado",
+                text: "Juana vivió sus últimos años humildemente y falleció a los 81 años. Aunque por un tiempo la gente la olvidó, la historia reconoció su inmenso espíritu libre. Hoy, tanto en Argentina como en Bolivia, es recordada como General de los ejércitos y una de las mamás de nuestra patria.",
+                emoji: "🕊️",
+                image: "https://elojodelarte.com/media/k2/items/cache/597106f07a53c1d5cb7a9980c4c166ec_XL.webp?t=20230726_221913"
+            }
+        };
+
+        const mapLocations = {
+            toroca: {
+                title: "1. Toroca (Nacimiento)",
+                text: "Ubicado en las tierras altas de Potosí. Aquí Juana creció cabalgando por los montes y aprendiendo a amar las tradiciones locales."
+            },
+            chuquisaca: {
+                title: "2. Chuquisaca (Revolución)",
+                text: "La cuna del gran estallido de 1809. Juana dejó el convento en esta provincia y se unió al clamor libertario junto a su pueblo."
+            },
+            villar: {
+                title: "3. El Villar (Victoria Histórica)",
+                text: "Lugar donde Juana lideró a 'Los Leales', quitándole de manera heroica la bandera del rey de España a los ejércitos coloniales."
+            },
+            salta: {
+                title: "4. Salta (Resistencia Gaucha)",
+                text: "Provincia argentina donde la gran comandante unió su valor a los bravos jinetes gauchos liderados por el general Güemes."
+            }
+        };
+
+        const quizQuestions = [
+            {
+                q: "¿Dónde nació Juana Azurduy en el año 1780?",
+                options: ["En el pueblo de Toroca", "En la gran ciudad de Lima", "En Buenos Aires junto al puerto"],
+                correct: "En el pueblo de Toroca",
+                comment: "⭐ ¡Excelente! Nació en el cantón de Toroca, cerca de las minas de Potosí."
+            },
+            {
+                q: "¿De quién recibió Juana su hermoso sable militar de general?",
+                options: ["Del general Manuel Belgrano", "Del propio rey español", "De un corsario extranjero"],
+                correct: "Del general Manuel Belgrano",
+                comment: "⭐ ¡Increíble! Belgrano reconoció su valor y le entregó su propio sable de lucha."
+            },
+            {
+                q: "¿Qué idioma originario hablaba Juana para comunicarse con sus soldados?",
+                options: ["El idioma quechua", "El idioma guaraní", "El idioma mapudungun"],
+                correct: "El idioma quechua",
+                comment: "⭐ ¡Perfecto! Hablar quechua le permitió liderar de manera directa a los pueblos indígenas."
+            },
+            {
+                q: "¿Cómo se llamaba su fiel compañero de batallas y esposo?",
+                options: ["Manuel Asencio Padilla", "Martín Miguel de Güemes", "Don José de San Martín"],
+                correct: "Manuel Asencio Padilla",
+                comment: "⭐ ¡Bien hecho! Padilla combatió codo a codo junto a Juana defendiendo la soberanía."
+            },
+            {
+                q: "¿Qué gran líder militar elogió su valor en 1825 y deseó que la patria llevara su nombre?",
+                options: ["El libertador Simón Bolívar", "El almirante Guillermo Brown", "El rey Fernando VII"],
+                correct: "El libertador Simón Bolívar",
+                comment: "⭐ ¡Impresionante! Bolívar quedó tan conmovido con su historia que la ascendió públicamente."
+            }
+        ];
+
+        let currentId = 1;
+        let isSpeaking = false;
+        let currentQuizIndex = 0;
+        let quizScore = 0;
+        let activeOptions = [];
+
+        // Render card function
+        function renderCard(id) {
+            const data = milestones[id];
+            document.getElementById('card-date').innerText = data.date;
+            document.getElementById('card-title').innerText = data.title;
+            document.getElementById('card-text').innerText = data.text;
+            document.getElementById('card-illustration').innerHTML = `<img src="${data.image}" alt="${data.title}" class="max-h-48 w-auto object-contain rounded-2xl shadow-md border-2 border-white bg-white p-1">`;
+            document.getElementById('card-index').innerText = `Paso ${id} de 12`;
+
+            // Update Timeline buttons styling
+            document.querySelectorAll('.timeline-btn').forEach(btn => {
+                btn.classList.remove('border-sky-400', 'bg-sky-50');
+                btn.classList.add('border-slate-200', 'bg-white');
+            });
+            const activeBtn = document.getElementById(`btn-${id}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('border-slate-200', 'bg-white');
+                activeBtn.classList.add('border-sky-400', 'bg-sky-50');
+                activeBtn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            }
+
+            if (isSpeaking) {
+                window.speechSynthesis.cancel();
+                isSpeaking = false;
+                document.getElementById('audio-text').innerText = "Escuchar Historia";
+                document.getElementById('audio-icon').innerText = "🔊";
+            }
+        }
+
+        // Select milestone in the timeline
+        function selectMilestone(id) {
+            currentId = id;
+            renderCard(id);
+        }
+
+        // Navigate through the timeline steps
+        function navigateMilestone(direction) {
+            currentId += direction;
+            if (currentId < 1) currentId = 12;
+            if (currentId > 12) currentId = 1;
+            renderCard(currentId);
+        }
+
+        // Web Speech API Narrator
+        function toggleAudio() {
+            if ('speechSynthesis' in window) {
+                if (isSpeaking) {
+                    window.speechSynthesis.cancel();
+                    isSpeaking = false;
+                    document.getElementById('audio-text').innerText = "Escuchar Historia";
+                    document.getElementById('audio-icon').innerText = "🔊";
+                } else {
+                    const activeText = document.getElementById('card-text').innerText;
+                    const speech = new SpeechSynthesisUtterance(activeText);
+                    speech.lang = 'es-ES';
+                    speech.rate = 1.0;
+                    speech.pitch = 1.1; 
+                    
+                    speech.onend = () => {
+                        isSpeaking = false;
+                        document.getElementById('audio-text').innerText = "Escuchar Historia";
+                        document.getElementById('audio-icon').innerText = "🔊";
+                    };
+
+                    window.speechSynthesis.speak(speech);
+                    isSpeaking = true;
+                    document.getElementById('audio-text').innerText = "Detener Narrador";
+                    document.getElementById('audio-icon').innerText = "⏹️";
+                }
+            } else {
+                alert("La lectura de voz no es compatible con este navegador.");
+            }
+        }
+
+        // Map Interaction
+        function selectMapLocation(locKey) {
+            const info = mapLocations[locKey];
+            if (info) {
+                document.getElementById('map-info-title').innerText = info.title;
+                document.getElementById('map-info-text').innerText = info.text;
+            }
+        }
+
+        // Quiz Logic
+        function shuffleArray(array) {
+            const arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        function renderQuizQuestion() {
+            if (currentQuizIndex >= quizQuestions.length) {
+                showQuizCongrats();
+                return;
+            }
+
+            const currentQ = quizQuestions[currentQuizIndex];
+            document.getElementById('quiz-progress').innerText = `Pregunta ${currentQuizIndex + 1} de ${quizQuestions.length}`;
+            document.getElementById('quiz-score-badge').innerText = `Puntos: ${quizScore}`;
+            document.getElementById('quiz-question').innerText = currentQ.q;
+            
+            // Hide feedback box & Next button
+            document.getElementById('quiz-feedback-box').classList.add('hidden');
+            document.getElementById('btn-next-question').classList.add('hidden');
+
+            const container = document.getElementById('quiz-options');
+            container.innerHTML = '';
+
+            // Shuffle option positions
+            activeOptions = shuffleArray(currentQ.options);
+
+            activeOptions.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = "quiz-opt-btn w-full text-left bg-slate-50 hover:bg-slate-100 border border-slate-200 text-xs sm:text-sm p-2 rounded-xl transition font-semibold text-slate-700";
+                btn.innerText = opt;
+                btn.onclick = () => checkQuizAnswer(opt, btn);
+                container.appendChild(btn);
+            });
+        }
+
+        function checkQuizAnswer(selectedOption, clickedButton) {
+            const currentQ = quizQuestions[currentQuizIndex];
+            const feedbackBox = document.getElementById('quiz-feedback-box');
+            const feedbackText = document.getElementById('quiz-feedback-text');
+
+            feedbackBox.classList.remove('hidden', 'bg-slate-50', 'bg-sky-50', 'text-slate-700', 'text-blue-800');
+
+            if (selectedOption === currentQ.correct) {
+                // Correct answer
+                quizScore += 10;
+                document.getElementById('quiz-score-badge').innerText = `Puntos: ${quizScore}`;
+                
+                feedbackText.innerText = currentQ.comment;
+                feedbackBox.classList.add('bg-sky-50', 'text-blue-800');
+                
+                // Highlight correct button
+                clickedButton.className = "w-full text-left bg-blue-600 text-white border border-blue-700 text-xs sm:text-sm p-2 rounded-xl font-bold";
+                
+                // Disable all other buttons
+                document.querySelectorAll('.quiz-opt-btn').forEach(btn => {
+                    btn.disabled = true;
+                    if (btn.innerText !== currentQ.correct) {
+                        btn.classList.add('opacity-40');
+                    }
+                });
+
+                // Show "Next" button
+                document.getElementById('btn-next-question').classList.remove('hidden');
+            } else {
+                // Wrong answer - Provide another chance
+                feedbackText.innerText = "❌ ¡Inténtalo otra vez! Analiza la historia e intenta de nuevo.";
+                feedbackBox.classList.add('bg-slate-50', 'text-slate-700');
+                
+                // Highlight incorrect button momentarily
+                clickedButton.className = "quiz-opt-btn w-full text-left bg-slate-500 text-white border border-slate-600 text-xs sm:text-sm p-2 rounded-xl font-bold";
+                setTimeout(() => {
+                    if (clickedButton && !clickedButton.disabled) {
+                        clickedButton.className = "quiz-opt-btn w-full text-left bg-slate-100 hover:bg-slate-200 border border-slate-300 text-xs sm:text-sm p-2 rounded-xl transition font-semibold text-slate-400 line-through";
+                    }
+                }, 1000);
+            }
+        }
+
+        function nextQuestion() {
+            currentQuizIndex++;
+            renderQuizQuestion();
+        }
+
+        // Congrats Screen
+        function showQuizCongrats() {
+            document.getElementById('quiz-wrapper').classList.add('hidden');
+            document.getElementById('quiz-feedback-box').classList.add('hidden');
+            document.getElementById('quiz-congrats').classList.remove('hidden');
+        }
+
+        // Reset Quiz
+        function resetQuiz() {
+            currentQuizIndex = 0;
+            quizScore = 0;
+            document.getElementById('quiz-wrapper').classList.remove('hidden');
+            document.getElementById('quiz-congrats').classList.add('hidden');
+            renderQuizQuestion();
+        }
+
+        // Initialize App
+        window.onload = function() {
+            renderCard(1);
+            renderQuizQuestion();
+        };
+    </script>
+</body>
+</html>
