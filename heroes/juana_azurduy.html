@@ -36,7 +36,14 @@
                     <h1 class="text-2xl sm:text-3xl text-white tracking-wide">¡La Gran Vida de Juana Azurduy!</h1>
                     <p class="text-xs sm:text-sm text-blue-900 font-semibold">Descubre a la gran heroína de América</p>
                 </div>
-                 <div id="menu-principal"></div>
+                 
+            </div>
+            <!-- Botón Narrador Mágico (Web Speech API) -->
+            <button onclick="toggleAudio()" id="btn-audio" class="bg-blue-800 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded-full flex items-center gap-2 shadow-lg transition duration-300 transform active:scale-95">
+                <span id="audio-icon" class="text-lg">🔊</span>
+                <span id="audio-text" class="text-sm">Escuchar Historia</span>
+            </button>
+            <div id="menu-principal"></div>
 
     <!-- Migas de pan -->
     <div class="max-w-6xl w-full mx-auto px-4 pt-4">
@@ -44,12 +51,6 @@
             <a href="../index.html" class="hover:underline text-sky-600">Inicio</a> ▶ Héroes y Heroínas
         </p>
     </div>
-            </div>
-            <!-- Botón Narrador Mágico (Web Speech API) -->
-            <button onclick="toggleAudio()" id="btn-audio" class="bg-blue-800 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded-full flex items-center gap-2 shadow-lg transition duration-300 transform active:scale-95">
-                <span id="audio-icon" class="text-lg">🔊</span>
-                <span id="audio-text" class="text-sm">Escuchar Historia</span>
-            </button>
         </div>
     </header>
 
