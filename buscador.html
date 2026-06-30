@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador | Historia Argentina Kids</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Quicksand', sans-serif; background-color: #f0f8ff; }
+        h1, h2, h3 { font-family: 'Fredoka One', cursive; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between text-slate-800">
+
+    <div id="menu-principal"></div>
+
+    <main class="max-w-3xl w-full mx-auto p-4 flex-grow flex flex-col gap-6 mt-6">
+
+        <section class="bg-sky-100 rounded-3xl p-6 sm:p-8 shadow-inner border-4 border-dashed border-sky-300 text-center">
+            <span class="text-5xl">🔍</span>
+            <h1 class="text-2xl sm:text-3xl text-blue-900 mt-2 mb-4">Buscador</h1>
+            <input
+                type="text"
+                id="buscador-input"
+                placeholder="Escribí algo, por ejemplo: Juana, batalla, libertad..."
+                class="w-full max-w-md mx-auto p-3 rounded-2xl border-2 border-sky-300 text-sm focus:outline-none focus:border-blue-500 shadow-inner"
+            >
+        </section>
+
+        <section id="buscador-resultados" class="flex flex-col gap-3">
+            <!-- Resultados dinámicos -->
+        </section>
+
+        <p id="buscador-sin-resultados" class="hidden text-center text-sm text-slate-500 py-6">
+            No encontramos nada con esas palabras. Probá con otra búsqueda.
+        </p>
+
+    </main>
+
+    <div id="footer-principal"></div>
+
+    <script src="js/buscador-datos.js"></script>
+    <script>
+        function renderizarResultados(lista) {
+            const contenedor = document.getElementById("buscador-resultados");
+            const sinResultados = document.getElementById("buscador-sin-resultados");
+            contenedor.innerHTML = "";
+
+            if (lista.length === 0) {
+                sinResultados.classList.remove("hidden");
+                return;
+            }
+            sinResultados.classList.add("hidden");
+
+            lista.forEach(item => {
+                const card = document.createElement("a");
+                card.href = item.url;
+                card.className = "bg-white rounded-2xl p-4 shadow border-2 border-sky-200 flex items-center gap-4 hover:-translate-y-0.5 hover:border-sky-400 transition transform";
+                card.innerHTML = `
+                    <span class="text-3xl flex-shrink-0">${item.icono}</span>
+                    <div class="flex-grow">
+                        <p class="text-sm font-bold text-blue-900">${item.titulo}</p>
+                        <p class="text-xs text-slate-600">${item.descripcion}</p>
+                        <p class="text-[10px] text-sky-600 font-semibold mt-1">${item.categoria}</p>
+                    </div>
+                    <span class="text-slate-300 flex-shrink-0">▶</span>
+                `;
+                contenedor.appendChild(card);
+            });
+        }
+
+        function buscar(texto) {
+            const t = texto.trim().toLowerCase();
+            if (t === "") {
+                renderizarResultados(indiceBusqueda);
+                return;
+            }
+            const filtrados = indiceBusqueda.filter(item =>
+                item.titulo.toLowerCase().includes(t) ||
+                item.descripcion.toLowerCase().includes(t) ||
+                item.categoria.toLowerCase().includes(t)
+            );
+            renderizarResultados(filtrados);
+        }
+
+        document.getElementById("buscador-input").addEventListener("input", (e) => {
+            buscar(e.target.value);
+        });
+
+        // Al cargar, mostramos todo el índice
+        renderizarResultados(indiceBusqueda);
+    </script>
+
+    <script>
+      const RUTA_BASE = "";
+      const PAGINA_ACTUAL = "buscador";
+    </script>
+    <script src="js/componentes.js"></script>
+    <script>cargarMenu(RUTA_BASE, PAGINA_ACTUAL);</script>
+
+</body>
+</html>

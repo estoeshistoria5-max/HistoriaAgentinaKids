@@ -3,97 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Héroes y Heroínas | Historias de Argentina</title>
+    <title>Historia Argentina Kids | Educación para Chicos y Chicas</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Quicksand', sans-serif;
-            background-color: #f0f8ff;
-        }
-        h1, h2, h3 {
-            font-family: 'Fredoka One', cursive;
-        }
+        body { font-family: 'Quicksand', sans-serif; background-color: #f0f8ff; }
+        h1, h2, h3 { font-family: 'Fredoka One', cursive; }
     </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between text-slate-800">
 
-    <!-- Header / Barra Superior -->
-    <header class="bg-sky-500 p-4 shadow-md sticky top-0 z-50 border-b-4 border-white">
-        <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div class="flex items-center gap-3">
-                <span class="text-4xl">🏇</span>
-                <div>
-                    <h1 class="text-2xl sm:text-3xl text-white tracking-wide">Héroes y Heroínas</h1>
-                    <p class="text-xs sm:text-sm text-blue-900 font-semibold">Conocé a quienes lucharon por la libertad</p>
-                </div>
-            </div>
-            <!-- TODO: este menú se va a reemplazar por componentes.js -->
-            <nav class="flex gap-4 text-white font-bold text-sm">
-                <a href="../index.html" class="hover:underline">🏠 Inicio</a>
-                <a href="index.html" class="hover:underline underline">Héroes y Heroínas</a>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Migas de pan -->
-    <div class="max-w-5xl w-full mx-auto px-4 pt-4">
-        <p class="text-xs text-slate-500">
-            <a href="../index.html" class="hover:underline text-sky-600">Inicio</a> ▶ Héroes y Heroínas
-        </p>
-    </div>
+    <div id="menu-principal"></div>
 
     <!-- Main Content -->
-    <main class="max-w-5xl w-full mx-auto p-4 flex-grow flex flex-col gap-8">
+    <main class="max-w-5xl w-full mx-auto p-4 flex-grow flex flex-col gap-10">
 
-        <section class="bg-sky-100 rounded-3xl p-6 sm:p-8 shadow-inner border-4 border-dashed border-sky-300 text-center">
-            <h2 class="text-xl sm:text-2xl text-blue-900 mb-3">⭐ Grandes Argentinos y Argentinas</h2>
-            <p class="text-sm text-slate-700 max-w-2xl mx-auto leading-relaxed">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elegí una tarjeta para conocer
-                la vida, las batallas y las aventuras de cada héroe y heroína de nuestra historia.
+        <!-- Sección de Bienvenida -->
+        <section class="bg-sky-100 rounded-3xl p-6 sm:p-10 shadow-inner border-4 border-dashed border-sky-300 text-center mt-6">
+            <h2 class="text-2xl sm:text-4xl text-blue-900 mb-4">¡Bienvenidos, exploradores de la historia!</h2>
+            <p class="text-sm sm:text-base text-slate-700 max-w-2xl mx-auto leading-relaxed">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Acá vas a encontrar historias,
+                juegos y mapas para descubrir a los grandes héroes y heroínas que lucharon por la
+                libertad de nuestra tierra. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
             </p>
         </section>
 
-        <!-- Grilla de Héroes -->
-        <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <!-- Categorías -->
+        <section>
+            <h2 class="text-xl sm:text-2xl text-blue-900 mb-6 text-center">🗂️ Elegí una categoría para empezar</h2>
 
-            <!-- Tarjeta: Juana Azurduy (activa) -->
-            <a href="juana_azurduy.html" class="bg-white rounded-3xl p-6 shadow-xl border-4 border-sky-400 transition transform hover:-translate-y-1 flex flex-col items-center text-center gap-3">
-                <span class="text-5xl">🏇</span>
-                <h3 class="text-lg text-blue-900">Juana Azurduy</h3>
-                <p class="text-xs text-slate-600">Lorem ipsum dolor sit amet, la guerrera que luchó por la libertad del Alto Perú.</p>
-                <span class="mt-2 bg-sky-500 text-white text-xs font-bold py-2 px-4 rounded-full">Conocer su historia ▶</span>
-            </a>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
 
-            <!-- Tarjeta placeholder: próximo héroe -->
-            <div class="bg-white/60 rounded-3xl p-6 shadow border-4 border-slate-200 flex flex-col items-center text-center gap-3 opacity-60 cursor-not-allowed">
-                <span class="text-5xl">⚔️</span>
-                <h3 class="text-lg text-slate-500">Próximo Héroe</h3>
-                <p class="text-xs text-slate-500">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <span class="mt-2 bg-slate-300 text-white text-xs font-bold py-2 px-4 rounded-full">Próximamente</span>
+                <a href="heroes/index.html" class="bg-white rounded-3xl p-6 shadow-xl border-4 border-sky-400 transition transform hover:-translate-y-1 flex flex-col items-center text-center gap-3">
+                    <span class="text-5xl">🏇</span>
+                    <h3 class="text-lg text-blue-900">Héroes y Heroínas</h3>
+                    <p class="text-xs text-slate-600">Lorem ipsum dolor sit amet, conocé a quienes lucharon por nuestra libertad.</p>
+                    <span class="mt-2 bg-sky-500 text-white text-xs font-bold py-2 px-4 rounded-full">Entrar ▶</span>
+                </a>
+
+                <a href="fechas-patrias/index.html" class="bg-white rounded-3xl p-6 shadow border-4 border-slate-200 transition transform hover:-translate-y-1 flex flex-col items-center text-center gap-3">
+                    <span class="text-5xl">🎉</span>
+                    <h3 class="text-lg text-blue-900">Fechas Patrias</h3>
+                    <p class="text-xs text-slate-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <span class="mt-2 bg-slate-300 text-white text-xs font-bold py-2 px-4 rounded-full">Próximamente</span>
+                </a>
+
+                <a href="lugares-historicos/index.html" class="bg-white rounded-3xl p-6 shadow border-4 border-slate-200 transition transform hover:-translate-y-1 flex flex-col items-center text-center gap-3">
+                    <span class="text-5xl">🏛️</span>
+                    <h3 class="text-lg text-blue-900">Lugares Históricos</h3>
+                    <p class="text-xs text-slate-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <span class="mt-2 bg-slate-300 text-white text-xs font-bold py-2 px-4 rounded-full">Próximamente</span>
+                </a>
+
+                <a href="pueblos-originarios/index.html" class="bg-white rounded-3xl p-6 shadow border-4 border-slate-200 transition transform hover:-translate-y-1 flex flex-col items-center text-center gap-3">
+                    <span class="text-5xl">🪶</span>
+                    <h3 class="text-lg text-blue-900">Pueblos Originarios</h3>
+                    <p class="text-xs text-slate-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <span class="mt-2 bg-slate-300 text-white text-xs font-bold py-2 px-4 rounded-full">Próximamente</span>
+                </a>
+
+                <a href="objetos-curiosidades/index.html" class="bg-white rounded-3xl p-6 shadow border-4 border-slate-200 transition transform hover:-translate-y-1 flex flex-col items-center text-center gap-3">
+                    <span class="text-5xl">🏺</span>
+                    <h3 class="text-lg text-blue-900">Objetos y Curiosidades</h3>
+                    <p class="text-xs text-slate-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <span class="mt-2 bg-slate-300 text-white text-xs font-bold py-2 px-4 rounded-full">Próximamente</span>
+                </a>
+
+                <a href="canciones-patrias/index.html" class="bg-white rounded-3xl p-6 shadow border-4 border-slate-200 transition transform hover:-translate-y-1 flex flex-col items-center text-center gap-3">
+                    <span class="text-5xl">🎵</span>
+                    <h3 class="text-lg text-blue-900">Canciones Patrias</h3>
+                    <p class="text-xs text-slate-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <span class="mt-2 bg-slate-300 text-white text-xs font-bold py-2 px-4 rounded-full">Próximamente</span>
+                </a>
+
             </div>
+        </section>
 
-            <!-- Tarjeta placeholder: próximo héroe -->
-            <div class="bg-white/60 rounded-3xl p-6 shadow border-4 border-slate-200 flex flex-col items-center text-center gap-3 opacity-60 cursor-not-allowed">
-                <span class="text-5xl">🎖️</span>
-                <h3 class="text-lg text-slate-500">Próxima Heroína</h3>
-                <p class="text-xs text-slate-500">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <span class="mt-2 bg-slate-300 text-white text-xs font-bold py-2 px-4 rounded-full">Próximamente</span>
+        <!-- Accesos rápidos a otras secciones -->
+        <section>
+            <h2 class="text-xl sm:text-2xl text-blue-900 mb-6 text-center">✨ Más para explorar</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                <a href="buscador.html" class="bg-blue-50 rounded-2xl p-4 border-2 border-blue-200 text-center hover:bg-blue-100 transition flex flex-col items-center gap-1">
+                    <span class="text-3xl">🔍</span>
+                    <span class="text-xs font-bold text-blue-900">Buscador</span>
+                </a>
+                <a href="blog.html" class="bg-blue-50 rounded-2xl p-4 border-2 border-blue-200 text-center hover:bg-blue-100 transition flex flex-col items-center gap-1">
+                    <span class="text-3xl">📰</span>
+                    <span class="text-xs font-bold text-blue-900">Blog</span>
+                </a>
+                <a href="linea-de-tiempo.html" class="bg-blue-50 rounded-2xl p-4 border-2 border-blue-200 text-center hover:bg-blue-100 transition flex flex-col items-center gap-1">
+                    <span class="text-3xl">🗺️</span>
+                    <span class="text-xs font-bold text-blue-900">Línea de Tiempo</span>
+                </a>
+                <a href="sobre-el-proyecto.html" class="bg-blue-50 rounded-2xl p-4 border-2 border-blue-200 text-center hover:bg-blue-100 transition flex flex-col items-center gap-1">
+                    <span class="text-3xl">✨</span>
+                    <span class="text-xs font-bold text-blue-900">Sobre el Proyecto</span>
+                </a>
             </div>
-
         </section>
 
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-slate-900 text-slate-400 text-center py-6 px-4 mt-8 border-t-4 border-sky-400">
-        <p class="text-xs">¡Inspirémonos en la valentía de nuestros héroes para luchar por un mundo más justo!</p>
-        <p class="text-[10px] mt-2 text-slate-500">Hecho con fines educativos e interactivos.</p>
-    </footer>
+    <div id="footer-principal"></div>
 
-</body>
-</html>
-
+    <script>
+      const RUTA_BASE = "";
+      const PAGINA_ACTUAL = "inicio";
+    </script>
+    <script src="js/componentes.js"></script>
+    <script>cargarMenu(RUTA_BASE, PAGINA_ACTUAL);</script>
 
 </body>
 </html>
